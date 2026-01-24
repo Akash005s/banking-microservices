@@ -1,0 +1,131 @@
+2026-01-24T09:51:08.962+05:30  INFO 16864 --- [card-service] [main] c.e.a.c.CardServiceApplication           : Starting CardServiceApplication using Java 17.0.9 with PID 16864 (E:\WorkSpace\microservice-learning\card-service\target\classes started by ASUS in E:\WorkSpace\microservice-learning\card-service)
+2026-01-24T09:51:08.966+05:30 DEBUG 16864 --- [card-service] [main] c.e.a.c.CardServiceApplication           : Running with Spring Boot v3.5.9, Spring v6.2.15
+2026-01-24T09:51:08.968+05:30  INFO 16864 --- [card-service] [main] c.e.a.c.CardServiceApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-01-24T09:51:10.598+05:30  INFO 16864 --- [card-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T09:51:10.727+05:30  INFO 16864 --- [card-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 1 JPA repository interface.
+2026-01-24T09:51:11.663+05:30  INFO 16864 --- [card-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9001 (http)
+2026-01-24T09:51:11.690+05:30  INFO 16864 --- [card-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T09:51:11.691+05:30  INFO 16864 --- [card-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-01-24T09:51:11.822+05:30  INFO 16864 --- [card-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T09:51:11.823+05:30  INFO 16864 --- [card-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2752 ms
+2026-01-24T09:51:12.165+05:30  INFO 16864 --- [card-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T09:51:12.272+05:30  INFO 16864 --- [card-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-01-24T09:51:12.367+05:30  INFO 16864 --- [card-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T09:51:12.951+05:30  INFO 16864 --- [card-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T09:51:13.020+05:30  INFO 16864 --- [card-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T09:51:13.800+05:30  INFO 16864 --- [card-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4654e373
+2026-01-24T09:51:13.804+05:30  INFO 16864 --- [card-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T09:51:13.930+05:30  WARN 16864 --- [card-service] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T09:51:13.933+05:30  WARN 16864 --- [card-service] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-01-24T09:51:13.971+05:30  INFO 16864 --- [card-service] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T09:51:15.601+05:30  INFO 16864 --- [card-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T09:51:15.774+05:30 DEBUG 16864 --- [card-service] [main] org.hibernate.SQL                        : 
+    create table cards (
+        card_id bigint not null auto_increment,
+        created_by varchar(255),
+        created_on datetime(6),
+        updated_by varchar(255),
+        updated_on datetime(6),
+        amount_used decimal(38,2) not null,
+        available_amount decimal(38,2) not null,
+        card_number varchar(255) not null,
+        card_type enum ('CREDIT_CARD','DEBIT_CARD') not null,
+        mobile_number varchar(255) not null,
+        total_limit decimal(38,2) not null,
+        primary key (card_id)
+    ) engine=InnoDB
+2026-01-24T09:51:15.917+05:30 DEBUG 16864 --- [card-service] [main] org.hibernate.SQL                        : 
+    alter table cards 
+       drop index UKqualp9iflk959u561wanavuj1
+2026-01-24T09:51:15.974+05:30 DEBUG 16864 --- [card-service] [main] org.hibernate.SQL                        : 
+    alter table cards 
+       add constraint UKqualp9iflk959u561wanavuj1 unique (card_number)
+2026-01-24T09:51:16.016+05:30  INFO 16864 --- [card-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T09:51:16.776+05:30  WARN 16864 --- [card-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T09:51:17.649+05:30  INFO 16864 --- [card-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9001 (http) with context path '/'
+2026-01-24T09:51:17.667+05:30  INFO 16864 --- [card-service] [main] c.e.a.c.CardServiceApplication           : Started CardServiceApplication in 10.134 seconds (process running for 11.95)
+2026-01-24T09:51:17.673+05:30  WARN 16864 --- [card-service] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-24T09:51:17.673+05:30  WARN 16864 --- [card-service] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-24T09:51:58.198+05:30  INFO 16864 --- [card-service] [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T09:51:58.198+05:30  INFO 16864 --- [card-service] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T09:51:58.200+05:30  INFO 16864 --- [card-service] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-01-24T09:52:00.070+05:30  INFO 16864 --- [card-service] [http-nio-9001-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 761 ms
+2026-01-24T09:57:53.033+05:30 DEBUG 16864 --- [card-service] [http-nio-9001-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        cards
+        (amount_used, available_amount, card_number, card_type, created_by, created_on, mobile_number, total_limit, updated_by, updated_on) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-01-24T09:59:31.680+05:30 DEBUG 16864 --- [card-service] [http-nio-9001-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.card_id,
+        c1_0.amount_used,
+        c1_0.available_amount,
+        c1_0.card_number,
+        c1_0.card_type,
+        c1_0.created_by,
+        c1_0.created_on,
+        c1_0.mobile_number,
+        c1_0.total_limit,
+        c1_0.updated_by,
+        c1_0.updated_on 
+    from
+        cards c1_0 
+    where
+        c1_0.mobile_number=?
+2026-01-24T10:01:21.234+05:30 DEBUG 16864 --- [card-service] [http-nio-9001-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.card_id,
+        c1_0.amount_used,
+        c1_0.available_amount,
+        c1_0.card_number,
+        c1_0.card_type,
+        c1_0.created_by,
+        c1_0.created_on,
+        c1_0.mobile_number,
+        c1_0.total_limit,
+        c1_0.updated_by,
+        c1_0.updated_on 
+    from
+        cards c1_0 
+    where
+        c1_0.card_id=?
+2026-01-24T10:01:21.280+05:30 DEBUG 16864 --- [card-service] [http-nio-9001-exec-6] org.hibernate.SQL                        : 
+    update
+        cards 
+    set
+        amount_used=?,
+        available_amount=?,
+        card_number=?,
+        card_type=?,
+        mobile_number=?,
+        total_limit=?,
+        updated_by=?,
+        updated_on=? 
+    where
+        card_id=?
+2026-01-24T10:01:29.628+05:30 DEBUG 16864 --- [card-service] [http-nio-9001-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.card_id,
+        c1_0.amount_used,
+        c1_0.available_amount,
+        c1_0.card_number,
+        c1_0.card_type,
+        c1_0.created_by,
+        c1_0.created_on,
+        c1_0.mobile_number,
+        c1_0.total_limit,
+        c1_0.updated_by,
+        c1_0.updated_on 
+    from
+        cards c1_0 
+    where
+        c1_0.mobile_number=?

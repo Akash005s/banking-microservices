@@ -1,0 +1,113 @@
+2026-01-22T08:40:54.810+05:30  INFO 12408 --- [account-service] [main] c.e.app.AccountServiceApplication        : Starting AccountServiceApplication using Java 17.0.9 with PID 12408 (E:\WorkSpace\microservice-learning\account-service\target\classes started by ASUS in E:\WorkSpace\microservice-learning\account-service)
+2026-01-22T08:40:54.815+05:30 DEBUG 12408 --- [account-service] [main] c.e.app.AccountServiceApplication        : Running with Spring Boot v3.5.9, Spring v6.2.15
+2026-01-22T08:40:54.816+05:30  INFO 12408 --- [account-service] [main] c.e.app.AccountServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-01-22T08:40:56.397+05:30  INFO 12408 --- [account-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-22T08:40:56.527+05:30  INFO 12408 --- [account-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 2 JPA repository interfaces.
+2026-01-22T08:40:57.552+05:30  INFO 12408 --- [account-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-01-22T08:40:57.571+05:30  INFO 12408 --- [account-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-22T08:40:57.572+05:30  INFO 12408 --- [account-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-01-22T08:40:57.651+05:30  INFO 12408 --- [account-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-22T08:40:57.652+05:30  INFO 12408 --- [account-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2765 ms
+2026-01-22T08:40:57.938+05:30  INFO 12408 --- [account-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-22T08:40:58.041+05:30  INFO 12408 --- [account-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-01-22T08:40:58.095+05:30  INFO 12408 --- [account-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-22T08:40:58.573+05:30  INFO 12408 --- [account-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-22T08:40:58.626+05:30  INFO 12408 --- [account-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-22T08:40:59.163+05:30  INFO 12408 --- [account-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6adcf059
+2026-01-22T08:40:59.165+05:30  INFO 12408 --- [account-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-22T08:40:59.249+05:30  WARN 12408 --- [account-service] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-22T08:40:59.251+05:30  WARN 12408 --- [account-service] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-01-22T08:40:59.283+05:30  INFO 12408 --- [account-service] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-22T08:41:00.539+05:30  INFO 12408 --- [account-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-22T08:41:00.663+05:30  INFO 12408 --- [account-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T08:41:01.283+05:30  WARN 12408 --- [account-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-22T08:41:01.937+05:30  INFO 12408 --- [account-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-01-22T08:41:01.949+05:30  INFO 12408 --- [account-service] [main] c.e.app.AccountServiceApplication        : Started AccountServiceApplication in 8.414 seconds (process running for 9.113)
+2026-01-22T08:41:01.954+05:30  WARN 12408 --- [account-service] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-22T08:41:01.954+05:30  WARN 12408 --- [account-service] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-22T08:41:11.471+05:30  INFO 12408 --- [account-service] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-22T08:41:11.519+05:30  INFO 12408 --- [account-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-22T08:41:11.522+05:30  INFO 12408 --- [account-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T08:41:11.525+05:30  INFO 12408 --- [account-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-22T08:41:11.535+05:30  INFO 12408 --- [account-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-22T22:07:58.187+05:30  INFO 360 --- [account-service] [main] c.e.app.AccountServiceApplication        : Starting AccountServiceApplication using Java 17.0.9 with PID 360 (E:\WorkSpace\microservice-learning\account-service\target\classes started by ASUS in E:\WorkSpace\microservice-learning\account-service)
+2026-01-22T22:07:58.201+05:30 DEBUG 360 --- [account-service] [main] c.e.app.AccountServiceApplication        : Running with Spring Boot v3.5.9, Spring v6.2.15
+2026-01-22T22:07:58.204+05:30  INFO 360 --- [account-service] [main] c.e.app.AccountServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-01-22T22:08:00.543+05:30  INFO 360 --- [account-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-22T22:08:00.689+05:30  INFO 360 --- [account-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 2 JPA repository interfaces.
+2026-01-22T22:08:02.281+05:30  INFO 360 --- [account-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-01-22T22:08:02.313+05:30  INFO 360 --- [account-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-22T22:08:02.313+05:30  INFO 360 --- [account-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-01-22T22:08:02.451+05:30  INFO 360 --- [account-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-22T22:08:02.452+05:30  INFO 360 --- [account-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4124 ms
+2026-01-22T22:08:02.933+05:30  INFO 360 --- [account-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-22T22:08:03.097+05:30  INFO 360 --- [account-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-01-22T22:08:03.208+05:30  INFO 360 --- [account-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-22T22:08:03.932+05:30  INFO 360 --- [account-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-22T22:08:04.009+05:30  INFO 360 --- [account-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-22T22:08:04.914+05:30  INFO 360 --- [account-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5627b8eb
+2026-01-22T22:08:04.917+05:30  INFO 360 --- [account-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-22T22:08:05.081+05:30  WARN 360 --- [account-service] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-22T22:08:05.084+05:30  WARN 360 --- [account-service] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-01-22T22:08:05.152+05:30  INFO 360 --- [account-service] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-22T22:08:07.193+05:30  INFO 360 --- [account-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-22T22:08:07.431+05:30  INFO 360 --- [account-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T22:08:08.545+05:30  WARN 360 --- [account-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-22T22:08:09.490+05:30  INFO 360 --- [account-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-01-22T22:08:09.509+05:30  INFO 360 --- [account-service] [main] c.e.app.AccountServiceApplication        : Started AccountServiceApplication in 12.959 seconds (process running for 14.017)
+2026-01-22T22:08:09.514+05:30  WARN 360 --- [account-service] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-22T22:08:09.514+05:30  WARN 360 --- [account-service] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-22T22:08:25.801+05:30  INFO 360 --- [account-service] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-22T22:08:25.801+05:30  INFO 360 --- [account-service] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-22T22:08:25.809+05:30  INFO 360 --- [account-service] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2026-01-22T22:08:27.605+05:30  INFO 360 --- [account-service] [http-nio-8081-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 884 ms
+2026-01-22T22:08:56.920+05:30 DEBUG 360 --- [account-service] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.active,
+        c1_0.created_by,
+        c1_0.created_on,
+        c1_0.email,
+        c1_0.full_name,
+        c1_0.mobile_number,
+        c1_0.updated_by,
+        c1_0.updated_on 
+    from
+        customers c1_0 
+    where
+        c1_0.mobile_number=?
+2026-01-22T22:08:57.062+05:30 DEBUG 360 --- [account-service] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        a1_0.customer_id,
+        a1_0.account_number,
+        a1_0.account_type,
+        a1_0.active,
+        a1_0.balance,
+        a1_0.branch,
+        a1_0.created_by,
+        a1_0.created_on,
+        a1_0.updated_by,
+        a1_0.updated_on 
+    from
+        accounts a1_0 
+    where
+        a1_0.customer_id=?
+2026-01-22T22:11:18.628+05:30  INFO 360 --- [account-service] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-22T22:11:18.719+05:30  INFO 360 --- [account-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-22T22:11:18.726+05:30  INFO 360 --- [account-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T22:11:18.730+05:30  INFO 360 --- [account-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-22T22:11:18.748+05:30  INFO 360 --- [account-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
