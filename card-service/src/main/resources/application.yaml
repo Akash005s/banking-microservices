@@ -5,11 +5,27 @@ spring:
   application:
     name: card-service
 
+  config:
+    import:
+      - "application-qa.yaml"
+      - "application-prod.yaml"
+
+  profiles:
+    active:
+      - "qa"
+
   datasource:
-    url: jdbc:mysql://localhost:3306/card
-    username: root
-    password: Akash@2005
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+    username: postgres.sphilkzrezatzezirqds
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 600000
+      connection-timeout: 30000
 
   jpa:
     hibernate:
@@ -17,8 +33,9 @@ spring:
     show-sql: false
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        default_schema: card
 
   jackson:
     serialization:
@@ -42,5 +59,16 @@ logging:
 
   file:
     name: logs/card-service.log
+
+build:
+  version: 3.0
+
+contact:
+  name: "Easy Bank Cards Support"
+  email: "support@easybank.com"
+  address: "321, Local street, ABC 54321"
+  support:
+    - "555 323232"
+    - "666 343434"
 
 

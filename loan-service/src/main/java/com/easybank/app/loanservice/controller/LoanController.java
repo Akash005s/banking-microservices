@@ -1,7 +1,9 @@
 package com.easybank.app.loanservice.controller;
 
+import com.easybank.app.loanservice.config.ContactInfoProperties;
 import com.easybank.app.loanservice.dto.request.LoanRequest;
 import com.easybank.app.loanservice.dto.request.LoanUpdateRequest;
+import com.easybank.app.loanservice.dto.response.GenericResponse;
 import com.easybank.app.loanservice.dto.response.LoanResponse;
 import com.easybank.app.loanservice.service.ILoanService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +26,10 @@ import org.springframework.web.bind.annotation.*;
 public class LoanController {
 
     private final ILoanService loanService;
+    private final ContactInfoProperties contactInfo;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
     @Operation(
             summary = "Create a new loan",
@@ -91,6 +98,16 @@ public class LoanController {
 
         loanService.deleteLoan(loanId);
         return ResponseEntity.ok("Loan deleted successfully");
+    }
+
+    @GetMapping("/contact-info")
+    ResponseEntity<GenericResponse<ContactInfoProperties>> fetchContactInfo(){
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Contact Info", contactInfo));
+    }
+
+    @GetMapping("/build-version")
+    ResponseEntity<GenericResponse<String>> fetchBuildVersion(){
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Build Version", buildVersion));
     }
 }
 

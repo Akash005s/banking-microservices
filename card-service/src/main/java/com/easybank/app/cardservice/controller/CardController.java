@@ -1,5 +1,6 @@
 package com.easybank.app.cardservice.controller;
 
+import com.easybank.app.cardservice.config.ContactInfoProperties;
 import com.easybank.app.cardservice.dto.request.CreateCardRequest;
 import com.easybank.app.cardservice.dto.request.UpdateCardRequest;
 import com.easybank.app.cardservice.dto.response.CardResponse;
@@ -14,6 +15,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -28,6 +30,10 @@ import java.util.List;
 public class CardController {
 
     private final ICardService cardService;
+    private final ContactInfoProperties contactInfo;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
     @Operation(
             summary = "Create a new card",
@@ -109,5 +115,15 @@ public class CardController {
         cardService.deleteCard(cardId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT)
                 .body(new GenericResponse<>("Card deleted successfully.", null));
+    }
+
+    @GetMapping("/contact-info")
+    ResponseEntity<GenericResponse<ContactInfoProperties>> fetchContactInfo(){
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Contact Info", contactInfo));
+    }
+
+    @GetMapping("/build-version")
+    ResponseEntity<GenericResponse<String>> fetchBuildVersion(){
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Build Version", buildVersion));
     }
 }

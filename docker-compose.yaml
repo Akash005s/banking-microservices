@@ -1,0 +1,34 @@
+services:
+
+  account-service:
+    image: docker.io/akash005s/account-service:1.0
+    container_name: account-service
+    mem_limit: 600m
+    cpus: "0.5"
+    ports:
+      - "8081:8081"
+    networks:
+      - easybank
+
+  loan-service:
+    image: docker.io/akash005s/loan-service:1.0
+    container_name: loan-service
+    mem_limit: 600m
+    cpus: "0.5"
+    ports:
+      - "8091:8091"
+    networks:
+      - easybank
+
+  card-service:
+    image: docker.io/akash005s/card-service:1.0
+    container_name: card-service
+    mem_limit: 600m
+    cpus: "0.5"
+    ports:
+      - "9001:9001"
+    networks:
+      - easybank
+networks:
+  easybank:
+    driver: bridge

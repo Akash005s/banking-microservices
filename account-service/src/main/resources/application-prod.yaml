@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: 1.0
+
+contact:
+  name: "Easy Bank Account Support"
+  email: "support@easybank.com"
+  address: "321, Prod street, ABC 54321"
+  support:
+    - "777 323232"
+    - "888 343434"

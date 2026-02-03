@@ -1,5 +1,6 @@
 package com.easybank.app.controller;
 
+import com.easybank.app.config.ContactInfoProperties;
 import com.easybank.app.dto.request.CustomerRequest;
 import com.easybank.app.dto.request.UpdateAccountRequest;
 import com.easybank.app.dto.response.CustomerResponse;
@@ -15,6 +16,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -31,6 +33,10 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     private final ICustomerService customerService;
+    private final ContactInfoProperties contactInfo;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
     @Operation(
             summary = "Create Account REST API",
@@ -77,10 +83,10 @@ public class AccountController {
     })
     @PutMapping("/update")
     ResponseEntity<GenericResponse<Void>> updateAccount(
-            @NotBlank(message = "Mobile number is required")
+            @NotBlank(message = "Account number is required")
             @Pattern(
-                    regexp = "^[6-9]\\d{12}$",
-                    message = "Account number must be a valid 12-digit number"
+                    regexp = "^[5-9]\\d{11}$",
+                    message = "Account number must be a 12-digit number starting with 5–9"
             )
             @RequestParam String accountNumber,
             @Valid @RequestBody UpdateAccountRequest accountRequest){
@@ -100,11 +106,21 @@ public class AccountController {
     ResponseEntity<GenericResponse<GenericResponse<Void>>> deleteAccount(
             @NotBlank(message = "Mobile number is required")
             @Pattern(
-                    regexp = "^[5-9]{12}$",
-                    message = "Account number must be a valid 12-digit number"
+                    regexp = "^[5-9]\\d{11}$",
+                    message = "Account number must be a 12-digit number starting with 5–9"
             )
             @RequestParam String accountNumber){
         customerService.deleteAccount(accountNumber);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new GenericResponse<>("Account deleted successfully.", null));
+    }
+
+    @GetMapping("/contact-info")
+    ResponseEntity<GenericResponse<ContactInfoProperties>> fetchContactInfo(){
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Contact Info", contactInfo));
+    }
+
+    @GetMapping("/build-version")
+    ResponseEntity<GenericResponse<String>> fetchBuildVersion(){
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Build Version", buildVersion));
     }
 }

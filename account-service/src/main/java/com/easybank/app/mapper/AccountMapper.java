@@ -30,7 +30,7 @@ public class AccountMapper {
                 .branch(branchName)
                 .active(true)
                 .build();
-    };
+    }
 
     public AccountResponse toResponse(Account account){
         return AccountResponse.builder()

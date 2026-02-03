@@ -7,6 +7,8 @@ import com.easybank.app.entity.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 @RequiredArgsConstructor
 public class CustomerMapper {
@@ -19,6 +21,7 @@ public class CustomerMapper {
                 .fullName(request.getFullName())
                 .email(request.getEmail())
                 .mobileNumber(request.getMobileNumber())
+                .accounts(new ArrayList<>())
                 .active(true)
                 .build();
     }

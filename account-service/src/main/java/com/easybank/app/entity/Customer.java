@@ -3,6 +3,7 @@ package com.easybank.app.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * This entity stores basic customer details and audit information.
  */
 @Entity
-@Table(name = "customers")
+@Table(name = "customers", schema = "account")
 @Getter
 @Setter
 @Builder

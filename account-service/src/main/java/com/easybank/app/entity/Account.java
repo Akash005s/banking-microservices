@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  * Stores account details such as balance and type.
  */
 @Entity
-@Table(name = "accounts")
+@Table(name = "accounts", schema = "account")
 @Getter
 @Setter
 @Builder
