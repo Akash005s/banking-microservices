@@ -1,0 +1,100 @@
+# ------------------------
+# Common reusable blocks
+# ------------------------
+x-service-defaults: &service-defaults
+  mem_limit: 600m
+  cpus: "0.5"
+  networks:
+    - easybank
+
+x-rabbit-env: &rabbit-env
+  SPRING_RABBITMQ_HOST: rabbit
+  SPRING_RABBITMQ_PORT: 5672
+  SPRING_RABBITMQ_USERNAME: guest
+  SPRING_RABBITMQ_PASSWORD: guest
+
+x-rabbit-env: &common-env
+  SPRING_CONFIG_IMPORT: "configserver:http://config-server:8071/"
+  SPRING_PROFILES_ACTIVE: qa
+  SPRING_RABBITMQ_HOST: rabbit
+  SPRING_RABBITMQ_PORT: 5672
+  SPRING_RABBITMQ_USERNAME: guest
+  SPRING_RABBITMQ_PASSWORD: guest
+
+services:
+
+  rabbit:
+    image: rabbitmq:4-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    networks:
+      - easybank
+
+  config-server:
+    image: docker.io/akash005s/config-server:1.0
+    container_name: config-server
+    <<: *service-defaults
+    ports:
+      - "8071:8071"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    environment:
+      <<: *rabbit-env
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8071/actuator/health/readiness | grep UP || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  account-service:
+    image: docker.io/akash005s/account-service:1.0
+    container_name: account-service
+    <<: *service-defaults
+    ports:
+      - "8081:8081"
+    depends_on:
+      config-server:
+        condition: service_healthy
+    environment:
+      <<: *common-env
+      SPRING_APPLICATION_NAME: accounts
+
+  loan-service:
+    image: docker.io/akash005s/loan-service:1.0
+    container_name: loan-service
+    <<: *service-defaults
+    ports:
+      - "8091:8091"
+    depends_on:
+      config-server:
+        condition: service_healthy
+    environment:
+      <<: *common-env
+      SPRING_APPLICATION_NAME: loans
+
+  card-service:
+    image: docker.io/akash005s/card-service:1.0
+    container_name: card-service
+    <<: *service-defaults
+    ports:
+      - "9001:9001"
+    depends_on:
+      config-server:
+        condition: service_healthy
+    environment:
+      <<: *common-env
+      SPRING_APPLICATION_NAME: cards
+
+networks:
+  easybank:
+    driver: bridge

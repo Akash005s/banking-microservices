@@ -11,6 +11,12 @@ spring:
   config:
     import: "optional:configserver:http://localhost:8071/"
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
   datasource:
     url: jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres
     username: postgres.sphilkzrezatzezirqds
@@ -56,5 +62,12 @@ logging:
 
   file:
     name: logs/loan-service.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh,busrefresh
+
 
 
