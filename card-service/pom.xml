@@ -50,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -117,7 +117,7 @@
                 <version>3.5.1</version>
                 <configuration>
                     <to>
-                        <image>akash005s/${project.artifactId}:1.0</image>
+                        <image>akash005s/${project.artifactId}:1.1</image>
                     </to>
                 </configuration>
             </plugin>

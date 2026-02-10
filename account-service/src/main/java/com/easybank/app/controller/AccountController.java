@@ -3,6 +3,7 @@ package com.easybank.app.controller;
 import com.easybank.app.config.ContactInfoProperties;
 import com.easybank.app.dto.request.CustomerRequest;
 import com.easybank.app.dto.request.UpdateAccountRequest;
+import com.easybank.app.dto.response.CustomerDetailsResponse;
 import com.easybank.app.dto.response.CustomerResponse;
 import com.easybank.app.dto.response.GenericResponse;
 import com.easybank.app.service.ICustomerService;
@@ -86,7 +87,7 @@ public class AccountController {
             @NotBlank(message = "Account number is required")
             @Pattern(
                     regexp = "^[5-9]\\d{11}$",
-                    message = "Account number must be a 12-digit number starting with 5–9"
+                    message = "Account number must be a 12-digit number starting with 5â€“9"
             )
             @RequestParam String accountNumber,
             @Valid @RequestBody UpdateAccountRequest accountRequest){
@@ -107,7 +108,7 @@ public class AccountController {
             @NotBlank(message = "Mobile number is required")
             @Pattern(
                     regexp = "^[5-9]\\d{11}$",
-                    message = "Account number must be a 12-digit number starting with 5–9"
+                    message = "Account number must be a 12-digit number starting with 5â€“9"
             )
             @RequestParam String accountNumber){
         customerService.deleteAccount(accountNumber);
@@ -122,5 +123,15 @@ public class AccountController {
     @GetMapping("/build-version")
     ResponseEntity<GenericResponse<String>> fetchBuildVersion(){
         return ResponseEntity.ok(new GenericResponse<>("Fetched Build Version", buildVersion));
+    }
+
+    @GetMapping("/fetch/customer-details")
+    public ResponseEntity<CustomerDetailsResponse> fetchCustomerDetails(
+            @RequestParam("mobileNumber") String mobileNumber) {
+
+        CustomerDetailsResponse response =
+                customerService.fetchCustomerDetails(mobileNumber);
+
+        return ResponseEntity.ok(response);
     }
 }

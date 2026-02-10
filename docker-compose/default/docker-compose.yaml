@@ -7,41 +7,15 @@ x-service-defaults: &service-defaults
   networks:
     - easybank
 
-# RabbitMQ only (for Config Server)
-x-rabbit-env: &rabbit-env
-  SPRING_RABBITMQ_HOST: rabbit
-  SPRING_RABBITMQ_PORT: 5672
-  SPRING_RABBITMQ_USERNAME: guest
-  SPRING_RABBITMQ_PASSWORD: guest
-
 # Config Server + RabbitMQ (for business services)
 x-common-env: &common-env
   SPRING_CONFIG_IMPORT: "configserver:http://config-server:8071/"
   SPRING_PROFILES_ACTIVE: default
-  SPRING_RABBITMQ_HOST: rabbit
-  SPRING_RABBITMQ_PORT: 5672
-  SPRING_RABBITMQ_USERNAME: guest
-  SPRING_RABBITMQ_PASSWORD: guest
 
 # ------------------------
 # Services
 # ------------------------
 services:
-
-  rabbit:
-    image: rabbitmq:4-management
-    container_name: rabbit
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    healthcheck:
-      test: rabbitmq-diagnostics check_port_connectivity
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 5s
-    networks:
-      - easybank
 
   config-server:
     image: docker.io/akash005s/config-server:1.0
@@ -49,11 +23,6 @@ services:
     <<: *service-defaults
     ports:
       - "8071:8071"
-    depends_on:
-      rabbit:
-        condition: service_healthy
-    environment:
-      <<: *rabbit-env
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:8071/actuator/health/readiness | grep UP || exit 1"]
       interval: 10s

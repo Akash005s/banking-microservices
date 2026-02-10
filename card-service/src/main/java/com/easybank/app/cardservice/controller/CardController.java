@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,7 +67,6 @@ public class CardController {
                     example = "9876543210",
                     required = true
             )
-            @NotBlank(message = "Mobile number is required")
             @Pattern(
                     regexp = "^[6-9]\\d{9}$",
                     message = "Mobile number must be a valid 10-digit Indian number"

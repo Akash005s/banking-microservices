@@ -32,14 +32,6 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-monitor</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
@@ -72,7 +64,7 @@
 				<version>3.5.1</version>
 				<configuration>
 					<to>
-						<image>akash005s/${project.artifactId}:1.0</image>
+						<image>akash005s/${project.artifactId}:1.1</image>
 					</to>
 				</configuration>
 			</plugin>
