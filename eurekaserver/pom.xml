@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.easybank.app</groupId>
-	<artifactId>eurekaserver</artifactId>
+	<artifactId>eureka-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>eurekaserver</name>
+	<name>eureka-server</name>
 	<description>Service discovery agent of EasyBank Microservices</description>
 	<url/>
 	<licenses>
