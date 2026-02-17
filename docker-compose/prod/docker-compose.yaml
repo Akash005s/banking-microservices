@@ -30,7 +30,7 @@ services:
   # CONFIG SERVER
   # ------------------------
   config-server:
-    image: docker.io/akash005s/config-server:1.1
+    image: docker.io/akash005s/config-server:1.2
     container_name: config-server
     <<: *service-defaults
     ports:
@@ -48,7 +48,7 @@ services:
   # EUREKA SERVER
   # ------------------------
   eureka-server:
-    image: docker.io/akash005s/eureka-server:1.1
+    image: docker.io/akash005s/eureka-server:1.2
     container_name: eureka-server
     <<: *service-defaults
     ports:
@@ -71,7 +71,7 @@ services:
   # ACCOUNT SERVICE
   # ------------------------
   account-service:
-    image: docker.io/akash005s/account-service:1.1
+    image: docker.io/akash005s/account-service:1.2
     container_name: account-service
     <<: *service-defaults
     ports:
@@ -82,12 +82,18 @@ services:
     environment:
       <<: *client-env
       SPRING_APPLICATION_NAME: accounts
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:8081/actuator/health/readiness | grep UP || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
   # ------------------------
   # LOAN SERVICE
   # ------------------------
   loan-service:
-    image: docker.io/akash005s/loan-service:1.1
+    image: docker.io/akash005s/loan-service:1.2
     container_name: loan-service
     <<: *service-defaults
     ports:
@@ -98,12 +104,18 @@ services:
     environment:
       <<: *client-env
       SPRING_APPLICATION_NAME: loans
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:8091/actuator/health/readiness | grep UP || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
   # ------------------------
   # CARD SERVICE
   # ------------------------
   card-service:
-    image: docker.io/akash005s/card-service:1.1
+    image: docker.io/akash005s/card-service:1.2
     container_name: card-service
     <<: *service-defaults
     ports:
@@ -114,6 +126,34 @@ services:
     environment:
       <<: *client-env
       SPRING_APPLICATION_NAME: cards
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:9001/actuator/health/readiness | grep UP || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  # ------------------------
+  # GATEWAY SERVICE
+  # ------------------------
+  gateway-service:
+    image: docker.io/akash005s/gateway-server:1.2
+    container_name: gateway-service
+    <<: *service-defaults
+    ports:
+      - "8072:8072"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      account-service:
+        condition: service_healthy
+      loan-service:
+        condition: service_healthy
+      card-service:
+        condition: service_healthy
+    environment:
+      <<: *client-env
+      SPRING_APPLICATION_NAME: gatewayserver
 
 # ------------------------
 # Network

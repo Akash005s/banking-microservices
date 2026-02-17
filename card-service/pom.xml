@@ -117,7 +117,7 @@
                 <version>3.5.1</version>
                 <configuration>
                     <to>
-                        <image>akash005s/${project.artifactId}:1.1</image>
+                        <image>akash005s/${project.artifactId}:1.2</image>
                     </to>
                 </configuration>
             </plugin>

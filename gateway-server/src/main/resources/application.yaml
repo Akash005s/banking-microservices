@@ -1,0 +1,51 @@
+server:
+  port: 8072
+
+spring:
+  application:
+    name: gatewayserver
+
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: false
+              lower-case-service-id: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    com.easybank.app: DEBUG
+
+  file:
+    name: logs/gateway-service.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "Gateway Server"
+    description: "Easy Bank Gateway Server Application"
+    version: 1.2
+
+
+
+

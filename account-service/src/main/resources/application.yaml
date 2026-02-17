@@ -13,7 +13,7 @@ spring:
   datasource:
     url: jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres
     username: postgres.sphilkzrezatzezirqds
-    password: akashcodes005s
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
     hikari:
@@ -57,10 +57,19 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,refresh,busrefresh,shutdown
+        include: "*"
   endpoint:
     shutdown:
       access: unrestricted
+    health:
+      probes:
+        enabled: true
+      show-details: always
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
   info:
     env:
       enabled: true
@@ -78,7 +87,7 @@ info:
   app:
     name: "Accounts"
     description: "Easy Bank Accounts Application"
-    version: 1.1
+    version: 1.2
 
 
 
