@@ -7,6 +7,8 @@ import com.easybank.app.dto.response.CustomerDetailsResponse;
 import com.easybank.app.dto.response.CustomerResponse;
 import com.easybank.app.dto.response.GenericResponse;
 import com.easybank.app.service.ICustomerService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -117,14 +119,26 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new GenericResponse<>("Account deleted successfully.", null));
     }
 
+    @RateLimiter(name = "fetchContactInfo", fallbackMethod = "fetchContactInfoFallback")
     @GetMapping("/contact-info")
     ResponseEntity<GenericResponse<ContactInfoProperties>> fetchContactInfo(){
         return ResponseEntity.ok(new GenericResponse<>("Fetched Contact Info", contactInfo));
     }
 
+    ResponseEntity<GenericResponse<ContactInfoProperties>> fetchContactInfoFallback(Throwable t){
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Contact Info", null));
+    }
+
+    @Retry(name= "fetchBuildVersion", fallbackMethod = "fetchBuildVersionFallback")
     @GetMapping("/build-version")
     ResponseEntity<GenericResponse<String>> fetchBuildVersion(){
+        log.info("Fetch Build Version REST API");
         return ResponseEntity.ok(new GenericResponse<>("Fetched Build Version", buildVersion));
+    }
+
+    ResponseEntity<GenericResponse<String>> fetchBuildVersionFallback(Throwable throwable){
+        log.info("Fetch Build Version Fallback REST API");
+        return ResponseEntity.ok(new GenericResponse<>("Fetched Build Version Fallback", "0.9"));
     }
 
     @GetMapping("/fetch/customer-details")

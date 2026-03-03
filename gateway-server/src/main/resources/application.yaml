@@ -16,6 +16,16 @@ spring:
             locator:
               enabled: false
               lower-case-service-id: true
+          httpclient:
+            connect-timeout: 3000
+            response-timeout: 3s
+
+  data:
+    redis:
+      connect-timeout: 2s
+      host: localhost
+      port: 6379
+      timeout: 1s
 
 logging:
   level:
@@ -45,6 +55,14 @@ info:
     name: "Gateway Server"
     description: "Easy Bank Gateway Server Application"
     version: 1.2
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
 
 
 

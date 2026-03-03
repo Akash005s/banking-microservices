@@ -27,16 +27,30 @@ x-client-env: &client-env
 services:
 
   # ------------------------
+  # REDIS
+  # ------------------------
+  redis:
+    image: redis:lts
+    container_name: redis
+    <<: *service-defaults
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      timeout: 10s
+      retries: 10
+
+  # ------------------------
   # CONFIG SERVER
   # ------------------------
   config-server:
-    image: docker.io/akash005s/config-server:1.2
+    image: docker.io/akash005s/config-server:1.3
     container_name: config-server
     <<: *service-defaults
     ports:
       - "8071:8071"
     environment:
-      SPRING_PROFILES_ACTIVE: default
+      SPRING_PROFILES_ACTIVE: git
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:8071/actuator/health/readiness | grep UP || exit 1"]
       interval: 10s
@@ -48,7 +62,7 @@ services:
   # EUREKA SERVER
   # ------------------------
   eureka-server:
-    image: docker.io/akash005s/eureka-server:1.2
+    image: docker.io/akash005s/eureka-server:1.3
     container_name: eureka-server
     <<: *service-defaults
     ports:
@@ -71,7 +85,7 @@ services:
   # ACCOUNT SERVICE
   # ------------------------
   account-service:
-    image: docker.io/akash005s/account-service:1.2
+    image: docker.io/akash005s/account-service:1.3
     container_name: account-service
     <<: *service-defaults
     ports:
@@ -93,7 +107,7 @@ services:
   # LOAN SERVICE
   # ------------------------
   loan-service:
-    image: docker.io/akash005s/loan-service:1.2
+    image: docker.io/akash005s/loan-service:1.3
     container_name: loan-service
     <<: *service-defaults
     ports:
@@ -115,7 +129,7 @@ services:
   # CARD SERVICE
   # ------------------------
   card-service:
-    image: docker.io/akash005s/card-service:1.2
+    image: docker.io/akash005s/card-service:1.3
     container_name: card-service
     <<: *service-defaults
     ports:
@@ -137,23 +151,27 @@ services:
   # GATEWAY SERVICE
   # ------------------------
   gateway-service:
-    image: docker.io/akash005s/gateway-server:1.2
+    image: docker.io/akash005s/gateway-server:1.3
     container_name: gateway-service
     <<: *service-defaults
     ports:
       - "8072:8072"
     depends_on:
-      eureka-server:
-        condition: service_healthy
       account-service:
         condition: service_healthy
       loan-service:
         condition: service_healthy
       card-service:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     environment:
       <<: *client-env
       SPRING_APPLICATION_NAME: gatewayserver
+      SPRING_DATA_REDIS_CONNECT-TIMEOUT: 2s
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_TIMEOUT: 1s
 
 # ------------------------
 # Network

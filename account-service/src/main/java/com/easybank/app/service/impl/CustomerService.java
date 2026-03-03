@@ -105,7 +105,6 @@ public class CustomerService implements ICustomerService {
                 .map(GenericResponse::getData)
                 .orElseGet(ArrayList::new);
 
-        // 4️⃣ Build response
         return CustomerDetailsResponse.builder()
                 .customer(customerResponse)
                 .loan(loan)
