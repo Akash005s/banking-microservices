@@ -53,6 +53,11 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
@@ -116,7 +121,7 @@
                 <version>3.5.1</version>
                 <configuration>
                     <to>
-                        <image>akash005s/${project.artifactId}:1.3</image>
+                        <image>akash005s/${project.artifactId}:1.4</image>
                     </to>
                 </configuration>
             </plugin>

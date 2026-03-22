@@ -1,0 +1,61 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s
+  scrape_timeout: 5s
+
+  external_labels:
+    monitor: 'microservices-monitor'
+
+scrape_configs:
+
+  - job_name: 'accounts-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['account-service:8081']
+        labels:
+          application: 'accounts-service'
+          environment: 'dev'
+
+  - job_name: 'loans-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['loan-service:8091']
+        labels:
+          application: 'loans-service'
+          environment: 'dev'
+
+  - job_name: 'cards-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['card-service:9001']
+        labels:
+          application: 'cards-service'
+          environment: 'dev'
+
+  - job_name: 'gateway-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['gateway-service:8072']
+        labels:
+          application: 'gateway-service'
+          environment: 'dev'
+
+  - job_name: 'eureka-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['eureka-server:8070']
+        labels:
+          application: 'eureka-service'
+          environment: 'dev'
+
+  - job_name: 'config-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['config-server:8071']
+        labels:
+          application: 'config-service'
+          environment: 'dev'
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus:9090']
